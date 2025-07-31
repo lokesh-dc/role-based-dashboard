@@ -1,11 +1,28 @@
 @import "tailwindcss";
-
-:root {
-  --backgoround: #ffffff;
-  --text-color: #000000;
-}
+@config "../../tailwind.config.js";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   background-color: var(--backgoround);
   color: var(--text-color);
+}
+
+.bg-primary {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.primary-button {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+input {
+  border: 1px solid var(--secondary-alfa)
+}
+
+input {
+  accent-color: var(--primary) !important;
 }

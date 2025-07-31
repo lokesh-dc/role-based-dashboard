@@ -3,14 +3,14 @@ import { InputFieldType, SwitchFormActionType } from "..";
 export const LoginFormConfigType = "LoginFormConfig";
 export const SignupFormConfigType = "SignupFormConfig";
 export const loginFormConfig = {
-	title: "Welcome Back",
-	description: "Let's get you logged in",
+	title: "Welcome to GGTodo",
+	description: "To get started, please sign in",
 	fields: [
 		{
 			id: "email",
 			type: "email",
 			label: "Email",
-			placeholder: "example@gmail.com",
+			placeholder: "Enter your registered email",
 			required: true,
 			fieldType: InputFieldType,
 			validations: (email) => {
@@ -20,9 +20,9 @@ export const loginFormConfig = {
 		},
 		{
 			id: "password",
-			type: "text",
+			type: "password",
 			label: "Password",
-			placeholder: "*********",
+			placeholder: "Enter your password",
 			required: true,
 			fieldType: InputFieldType,
 			isPassword: true,
@@ -46,23 +46,22 @@ export const loginFormConfig = {
 };
 
 export const signupFormConfig = {
-	title: "Welcome",
-	description: "Let's get you signed up in no time",
+	title: "You’re one click away from less busywork",
 	fields: [
-		// {
-		// 	id: "fullName",
-		// 	type: "text",
-		// 	label: "Full Name",
-		// 	placeholder: "Lokesh Choudhary",
-		// 	required: false,
-		// 	fieldType: InputFieldType,
-		// 	errorMessage: "Please enter your name",
-		// },
+		{
+			id: "fullName",
+			type: "text",
+			label: "Full Name",
+			placeholder: "Lokesh Choudhary",
+			required: false,
+			fieldType: InputFieldType,
+			errorMessage: "Please enter your name",
+		},
 		{
 			id: "email",
 			type: "email",
 			label: "Email",
-			placeholder: "Enter your email",
+			placeholder: "example@site.com",
 			unique: true,
 			required: true,
 			fieldType: InputFieldType,
@@ -72,35 +71,10 @@ export const signupFormConfig = {
 			errorMessage: "Please enter a valid email address",
 		},
 		{
-			id: "username",
-			type: "text",
-			label: "User Name",
-			placeholder: "lokesh-dc",
-			unique: true,
-			required: true,
-			isApiDependent: true,
-			apiEndpoint: "/api/users/username/check",
-			fieldType: InputFieldType,
-			validations: (email) => {
-				"/^[^s@]+@[^s@]+.[^s@]+$/".test(email);
-			},
-			errorMessage: "Please enter a valid username",
-		},
-		{
 			id: "password",
-			type: "text",
+			type: "password",
 			label: "Password",
-			placeholder: "Enter your password",
-			required: true,
-			fieldType: InputFieldType,
-			isPassword: true,
-			errorMessage: "Please enter a password",
-		},
-		{
-			id: "confirmPassword",
-			type: "text",
-			label: "Confirm Password",
-			placeholder: "Confirm your password",
+			placeholder: "Minimum 8 Characters",
 			required: true,
 			fieldType: InputFieldType,
 			isPassword: true,

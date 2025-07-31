@@ -57,8 +57,13 @@ export default function AuthForm() {
 	}
 
 	return (
-		<div className="md:bg-transparent rounded-2xl flex flex-col gap-4 p-6 md:max-w-sm w-full">
-			<h2 className="text-3xl">{currentFormConfig?.title}</h2>
+		<div className="md:bg-transparent rounded-2xl flex flex-col gap-4 p-6">
+			<div className="flex flex-col gap-1">
+				<h2 className="text-[40px]">{currentFormConfig?.title}</h2>
+				<p className="text-md text-secondary">
+					{currentFormConfig?.description}
+				</p>
+			</div>
 			<form className="flex flex-col gap-4" onSubmit={handleSubmit}>
 				<FieldsContainer
 					formErrors={formErrors}
@@ -67,6 +72,20 @@ export default function AuthForm() {
 					formErrorSetter={setFormErrors}
 					config={currentFormConfig?.fields}
 				/>
+				{currentForm == LoginFormConfigType ? (
+					<div className="flex justify-between">
+						<div className="flex gap-2">
+							<input type="checkbox" />
+							<label>Remember me</label>
+						</div>
+						<p>Forgot Password</p>
+					</div>
+				) : (
+					<div className="flex gap-2">
+						<input type="checkbox" />
+						<label>Agree to Terms of Service and Privacy Policy</label>
+					</div>
+				)}
 				<div className="flex flex-col gap-1">
 					<PrimaryButton
 						title={
