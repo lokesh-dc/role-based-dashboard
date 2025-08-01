@@ -41,7 +41,7 @@ export const loginFormConfig = {
 		},
 	},
 	onSuccess: () => {
-		window.location.href = "/forms";
+		window.location.href = "/dashboard";
 	},
 };
 
@@ -93,7 +93,7 @@ export const signupFormConfig = {
 		},
 	},
 	onSuccess: () => {
-		window.location.href = "/forms";
+		window.location.href = "/dashboard";
 	},
 };
 
