@@ -1,3 +1,5 @@
+import PageLayout from "@/components/layouts";
+
 export default function DashboardPage() {
-	return <div>Dashboard page </div>;
+	return <PageLayout />;
 }

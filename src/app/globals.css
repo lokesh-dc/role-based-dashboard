@@ -20,9 +20,5 @@ body {
 }
 
 input {
-  border: 1px solid var(--secondary-alfa)
-}
-
-input {
   accent-color: var(--primary) !important;
 }

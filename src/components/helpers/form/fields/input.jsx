@@ -6,6 +6,7 @@ export default function InputField({
 	value = "",
 	changeHandler = () => {},
 	required = false,
+	isNoBorderVariant = false,
 }) {
 	return (
 		<input
@@ -15,7 +16,11 @@ export default function InputField({
 			value={value}
 			required={required}
 			onChange={changeHandler}
-			className="p-2 rounded border focus:outline-none focus:ring-2 focus:ring-primary"
+			className={`p-2 rounded focus:outline-none ${
+				isNoBorderVariant
+					? ""
+					: "border border-secondary-alfa focus:ring-primary"
+			}`}
 		/>
 	);
 }
