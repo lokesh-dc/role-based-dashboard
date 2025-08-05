@@ -50,6 +50,15 @@ export async function POST(req) {
 			maxAge: 60 * 60 * 24 * 7,
 		});
 
+		(await cookies()).set({
+			name: "user-details",
+			value: JSON.stringify(user),
+			httpOnly: true,
+			path: "/",
+			secure: true,
+			maxAge: 60 * 60 * 24 * 7,
+		});
+
 		return sendAPIResponse({
 			status: SuccessStatusType,
 			message: "Signed up scuccessfully.",

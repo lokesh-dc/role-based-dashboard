@@ -49,11 +49,11 @@ export const signupFormConfig = {
 	title: "You’re one click away from less busywork",
 	fields: [
 		{
-			id: "fullName",
+			id: "fullname",
 			type: "text",
 			label: "Full Name",
 			placeholder: "Lokesh Choudhary",
-			required: false,
+			required: true,
 			fieldType: InputFieldType,
 			errorMessage: "Please enter your name",
 		},
