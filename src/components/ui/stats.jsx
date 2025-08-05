@@ -1,8 +1,8 @@
-export default function TodoStats() {
+export default function TodoStats({ allCount = 0, completed = 0 }) {
 	const todos = [
-		{ title: "Upcoming", count: 6 },
-		{ title: "All Todo", count: 12 },
-		{ title: "Completed", count: 6 },
+		{ title: "All Todo", count: allCount },
+		{ title: "Completed", count: completed },
+		{ title: "Upcoming", count: allCount - completed },
 	];
 	return (
 		<div className="flex justify-between gap-2 bg-white p-5 rounded-lg">

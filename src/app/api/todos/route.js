@@ -8,8 +8,9 @@ import Tasks from "@/models/todos";
 import { verifyJWT } from "@/utils/token";
 
 export async function GET(req) {
-	const token = req.cookies.get("auth_token")?.value;
-
+	const authHeader = req.headers.get("authorization");
+	const token =
+		authHeader?.split(" ")[1] || req.cookies.get("auth_token")?.value;
 	try {
 		const { id: userId } = await verifyJWT(token);
 		await connectToDatabase();

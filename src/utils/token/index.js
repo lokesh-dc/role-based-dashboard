@@ -1,16 +1,7 @@
-import { SignJWT } from "jose";
-import { jwtVerify } from "jose";
-
+var jwt = require("jsonwebtoken");
 export default async function generateToken(data) {
 	try {
-		const secret = new TextEncoder().encode(
-			process.env.NEXT_PUBLIC_API_JWT_PASSWORD
-		);
-		return await new SignJWT({ ...data, _id: data?._id.toString() })
-			.setProtectedHeader({ alg: "HS256" })
-			.setIssuedAt()
-			.setExpirationTime("7d")
-			.sign(secret);
+		return jwt.sign(data, process.env.NEXT_PUBLIC_API_JWT_PASSWORD);
 	} catch (err) {
 		console.log("Token Signing Error : ", err);
 		return null;
@@ -19,15 +10,10 @@ export default async function generateToken(data) {
 
 export async function verifyJWT(token) {
 	try {
-		const secret = new TextEncoder().encode(
-			process.env.NEXT_PUBLIC_API_JWT_PASSWORD
-		);
-		const { payload } = await jwtVerify(token, secret, {
-			algorithms: ["HS256"],
-		});
+		const payload = jwt.verify(token, process.env.NEXT_PUBLIC_API_JWT_PASSWORD);
 		return payload;
 	} catch (err) {
-		console.log({ err });
+		console.log("Token Verifying Error : ", err);
 		return {};
 	}
 }
