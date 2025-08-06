@@ -37,6 +37,7 @@ export default function ProfileModal({
 						}}
 					/>
 
+					<hr className="border border-secondary-alfa" />
 					<TodoStats {...taskStats} />
 				</div>
 			</Modal>
