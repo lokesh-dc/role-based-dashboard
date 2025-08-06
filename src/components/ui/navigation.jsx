@@ -5,9 +5,8 @@ import InputField from "../helpers/form/fields/input";
 import NextImageCompo from "../images";
 import ProfileModal from "../modals/profile";
 
-export default function NavigationBar({ userDetails }) {
+export default function NavigationBar({ userDetails, taskStats = {} }) {
 	const [isProfileSectionOpen, toggleProfileSection] = useState(false);
-	const [userDetailsData, setUserDetailsData] = useState(userDetails);
 
 	return (
 		<>
@@ -46,7 +45,8 @@ export default function NavigationBar({ userDetails }) {
 			{isProfileSectionOpen ? (
 				<ProfileModal
 					closeModalEvent={() => toggleProfileSection(!isProfileSectionOpen)}
-					userDetails={userDetailsData}
+					userDetails={userDetails}
+					taskStats={taskStats}
 				/>
 			) : null}
 		</>

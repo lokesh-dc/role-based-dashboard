@@ -2,6 +2,8 @@ import { InputFieldType, SwitchFormActionType } from "..";
 
 export const LoginFormConfigType = "LoginFormConfig";
 export const SignupFormConfigType = "SignupFormConfig";
+export const UpdateFormConfigType = "UpdateFormConfigType";
+
 export const loginFormConfig = {
 	title: "Welcome to GGTodo",
 	description: "To get started, please sign in",
@@ -97,10 +99,45 @@ export const signupFormConfig = {
 	},
 };
 
+export const editProfileFormConfig = {
+	fields: [
+		{
+			id: "fullname",
+			type: "text",
+			label: "Full Name",
+			placeholder: "Lokesh Choudhary",
+			required: true,
+			fieldType: InputFieldType,
+			errorMessage: "Please enter your name",
+		},
+		{
+			id: "email",
+			type: "email",
+			label: "Email",
+			placeholder: "example@site.com",
+			unique: true,
+			required: true,
+			fieldType: InputFieldType,
+			validations: (email) => {
+				"/^[^s@]+@[^s@]+.[^s@]+$/".test(email);
+			},
+			errorMessage: "Please enter a valid email address",
+		},
+	],
+	submitTitle: "Update Profie",
+	// submitApi: "/api/user/signup",
+	submitLoadingTitle: "Updating...",
+	onSuccess: () => {
+		window.location.reload();
+	},
+	buttonType: "secondary",
+};
+
 export const getFormConfig = (type) => {
 	const formtypes = {
 		[LoginFormConfigType]: loginFormConfig,
 		[SignupFormConfigType]: signupFormConfig,
+		[UpdateFormConfigType]: editProfileFormConfig,
 	};
 	return formtypes[type] || {};
 };

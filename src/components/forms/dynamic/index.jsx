@@ -1,7 +1,11 @@
 "use client";
 import { useState } from "react";
 
-import { getFormConfig, LoginFormConfigType } from "@/constants/forms/users";
+import {
+	getFormConfig,
+	LoginFormConfigType,
+	SignupFormConfigType,
+} from "@/constants/forms/users";
 import { SwitchFormActionType } from "@/constants/forms";
 
 import PrimaryButton from "@/components/buttons/primaryButton";
@@ -9,12 +13,17 @@ import FieldsContainer from "@/components/helpers/form/container";
 
 import APIrequest from "@/utils/requests";
 
-export default function AuthForm() {
-	const [currentForm, setCurrentForm] = useState(LoginFormConfigType);
-	const [currentFormConfig, setCurrentFormConfig] = useState(
-		getFormConfig(currentForm || LoginFormConfigType)
+export default function ConfigBasedForm({
+	currentformType,
+	formPreFillData = {},
+}) {
+	const [currentForm, setCurrentForm] = useState(
+		currentformType || LoginFormConfigType
 	);
-	const [formState, setFormState] = useState({});
+	const [currentFormConfig, setCurrentFormConfig] = useState(
+		getFormConfig(currentformType || currentForm || LoginFormConfigType)
+	);
+	const [formState, setFormState] = useState(formPreFillData || {});
 	const [formErrors, setFormErrors] = useState({});
 	const [loading, setLoading] = useState(false);
 
@@ -57,12 +66,16 @@ export default function AuthForm() {
 	}
 
 	return (
-		<div className="md:bg-transparent rounded-2xl flex flex-col gap-4 p-6">
+		<div className="md:bg-transparent rounded-2xl flex flex-col gap-4">
 			<div className="flex flex-col gap-1">
-				<h2 className="text-[40px]">{currentFormConfig?.title}</h2>
-				<p className="text-md text-secondary">
-					{currentFormConfig?.description}
-				</p>
+				{currentFormConfig?.title ? (
+					<h2 className="text-[40px]">{currentFormConfig?.title}</h2>
+				) : null}
+				{currentFormConfig?.description ? (
+					<p className="text-md text-secondary">
+						{currentFormConfig?.description}
+					</p>
+				) : null}
 			</div>
 			<form className="flex flex-col gap-4" onSubmit={handleSubmit}>
 				<FieldsContainer
@@ -80,12 +93,12 @@ export default function AuthForm() {
 						</div>
 						<p>Forgot Password</p>
 					</div>
-				) : (
+				) : currentForm == SignupFormConfigType ? (
 					<div className="flex gap-2">
 						<input type="checkbox" />
 						<label>Agree to Terms of Service and Privacy Policy</label>
 					</div>
-				)}
+				) : null}
 				<div className="flex flex-col gap-1">
 					<PrimaryButton
 						title={
@@ -96,6 +109,7 @@ export default function AuthForm() {
 						type="submit"
 						disabled={loading}
 						clickEvent={handleSubmit}
+						buttonType={currentFormConfig?.buttonType || "primary"}
 					/>
 					{formErrors?.common && (
 						<p className="text-red-800 text-sm">{formErrors?.common}</p>

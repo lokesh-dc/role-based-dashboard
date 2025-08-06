@@ -7,13 +7,17 @@ export default function PrimaryButton({
 	linkTarget = "",
 	type = "button",
 	disabled = false,
+	buttonType = "primary",
 }) {
 	const Tag = isLink ? Link : "button";
 	const props = isLink ? { href: linkTarget } : { onClick: clickEvent, type };
 
+	const buttonClasses =
+		buttonType == "primary" ? "bg-primary" : "bg-[#E7F7EF] text-[#097C44]";
+
 	return (
 		<Tag
-			className={`bg-primary py-2 px-7 rounded-lg primary-button ${
+			className={`${buttonClasses} py-2 px-7 rounded-lg ${
 				disabled ? "opacity-50 cursor-not-allowed" : ""
 			}`}
 			{...props}

@@ -1,4 +1,4 @@
-import AuthForm from "@/components/forms/auth";
+import AuthForm from "@/components/forms/dynamic";
 import NextImageCompo from "@/components/images";
 
 export default function AuthPage() {
