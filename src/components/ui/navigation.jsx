@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import FormFieldWrapper from "../helpers/form/fields";
 import InputField from "../helpers/form/fields/input";
 import NextImageCompo from "../images";
@@ -7,6 +7,7 @@ import ProfileModal from "../modals/profile";
 
 export default function NavigationBar({ userDetails, taskStats = {} }) {
 	const [isProfileSectionOpen, toggleProfileSection] = useState(false);
+	const [isProfileDropDownOpen, toggleProfileDropDown] = useState(false);
 
 	return (
 		<>
@@ -26,19 +27,52 @@ export default function NavigationBar({ userDetails, taskStats = {} }) {
 						width={24}
 						src="/icons/notification.svg"
 					/>
-					<div
-						onClick={() => toggleProfileSection(!isProfileSectionOpen)}
-						className="flex items-center gap-1 p-2 border border-secondary-alfa rounded-md"
-					>
-						<div className="flex justify-center items-center h-[24px] w-[24px] rounded-full bg-primary">
-							{userDetails?.fullname[0]}
+					<div className="relative">
+						<div
+							onClick={() => toggleProfileDropDown(!isProfileDropDownOpen)}
+							className="flex items-center gap-1 p-2 border border-secondary-alfa rounded-md"
+						>
+							<div className="flex justify-center items-center h-[24px] w-[24px] rounded-full bg-primary">
+								{userDetails?.fullname[0]}
+							</div>
+							<NextImageCompo
+								classes="h-[15px] w-[20px] object-contain"
+								src="/icons/down-arrow.png"
+								height={20}
+								width={20}
+							/>
 						</div>
-						<NextImageCompo
-							classes="h-[15px] w-[20px] object-contain"
-							src="/icons/down-arrow.png"
-							height={20}
-							width={20}
-						/>
+						{isProfileDropDownOpen ? (
+							<div className="absolute overflow-hidden top-full right-0 w-[200px] rounded-3xl bg-white shadow-2xl flex flex-col border border-secondary-alfa">
+								{[
+									{
+										title: "Profile",
+										icon: "/icons/profile.svg",
+										clickEvent: () => toggleProfileSection(true),
+									},
+									{ title: "Logout", icon: "/icons/logout.svg" },
+								].map(({ title, icon, clickEvent }, idx) => (
+									<React.Fragment key={idx}>
+										<div
+											onClick={() => {
+												clickEvent();
+												toggleProfileDropDown(!isProfileDropDownOpen);
+											}}
+											className={`p-4 cursor-pointer text-secondary flex items-center gap-1 justify-start hover:bg-secondary-alfa`}
+										>
+											<NextImageCompo
+												style={{ height: "20px", width: "20px" }}
+												src={icon}
+												height={20}
+												width={20}
+											/>
+											{title}
+										</div>
+										{idx == 0 ? <hr className="border-secondary-alfa" /> : null}
+									</React.Fragment>
+								))}
+							</div>
+						) : null}
 					</div>
 				</div>
 			</div>

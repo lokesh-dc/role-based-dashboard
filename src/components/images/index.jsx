@@ -5,9 +5,11 @@ export default function NextImageCompo({
 	width = 200,
 	alt = "",
 	classes = "",
+	style = {},
 }) {
 	return (
 		<Image
+			style={style}
 			className={classes}
 			src={src}
 			height={height}
