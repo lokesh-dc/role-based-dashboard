@@ -4,6 +4,7 @@ import FormFieldWrapper from "../helpers/form/fields";
 import InputField from "../helpers/form/fields/input";
 import NextImageCompo from "../images";
 import ProfileModal from "../modals/profile";
+import APIrequest from "@/utils/requests";
 
 export default function NavigationBar({ userDetails, taskStats = {} }) {
 	const [isProfileSectionOpen, toggleProfileSection] = useState(false);
@@ -50,7 +51,14 @@ export default function NavigationBar({ userDetails, taskStats = {} }) {
 										icon: "/icons/profile.svg",
 										clickEvent: () => toggleProfileSection(true),
 									},
-									{ title: "Logout", icon: "/icons/logout.svg" },
+									{
+										title: "Logout",
+										icon: "/icons/logout.svg",
+										clickEvent: async () => {
+											await APIrequest({ api: "/api/user/logout" });
+											window.location.reload();
+										},
+									},
 								].map(({ title, icon, clickEvent }, idx) => (
 									<React.Fragment key={idx}>
 										<div
