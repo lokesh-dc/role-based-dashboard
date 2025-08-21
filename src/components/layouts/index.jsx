@@ -1,7 +1,8 @@
+import { cookies } from "next/headers";
+
 import NavigationBar from "../ui/navigation";
 import TodoStats from "../ui/stats";
-
-import { cookies } from "next/headers";
+import TodosTable from "@/components/ui/table/todos";
 
 export default async function PageLayout({ data }) {
 	const cookieStore = await cookies();
@@ -25,6 +26,7 @@ export default async function PageLayout({ data }) {
 					<p className="text-xs">Last Login Time : 16/08/2023 18:00</p>
 				</div>
 				<TodoStats allCount={allTaksCount} completed={completedTasksCount} />
+				<TodosTable data={data} />
 			</div>
 		</div>
 	);

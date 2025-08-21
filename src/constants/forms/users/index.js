@@ -133,11 +133,3 @@ export const editProfileFormConfig = {
 	buttonType: "secondary",
 };
 
-export const getFormConfig = (type) => {
-	const formtypes = {
-		[LoginFormConfigType]: loginFormConfig,
-		[SignupFormConfigType]: signupFormConfig,
-		[UpdateFormConfigType]: editProfileFormConfig,
-	};
-	return formtypes[type] || {};
-};

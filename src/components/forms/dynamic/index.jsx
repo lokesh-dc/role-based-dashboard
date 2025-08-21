@@ -2,10 +2,11 @@
 import { useState } from "react";
 
 import {
-	getFormConfig,
 	LoginFormConfigType,
 	SignupFormConfigType,
 } from "@/constants/forms/users";
+
+import { getFormConfig } from "@/constants/forms";
 import { SwitchFormActionType } from "@/constants/forms";
 
 import PrimaryButton from "@/components/buttons/primaryButton";
