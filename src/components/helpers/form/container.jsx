@@ -1,6 +1,11 @@
-import { InputFieldType } from "@/constants/forms";
+import {
+	DateFieldType,
+	InputFieldType,
+	TextAreaFieldType,
+} from "@/constants/forms/fields";
 import FormFieldWrapper from "./fields";
 import InputField from "./fields/input";
+import TextAreaField from "./fields/textarea";
 export default function FieldsContainer({
 	config,
 	formErrors = {},
@@ -29,6 +34,10 @@ export default function FieldsContainer({
 				const renderField = () => {
 					switch (fieldType) {
 						case InputFieldType:
+							return <InputField key={id} {...formFieldConfig} />;
+						case TextAreaFieldType:
+							return <TextAreaField key={id} {...formFieldConfig} />;
+						case DateFieldType:
 							return <InputField key={id} {...formFieldConfig} />;
 						default:
 							return null;

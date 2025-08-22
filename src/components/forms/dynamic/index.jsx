@@ -18,6 +18,7 @@ export default function ConfigBasedForm({
 	currentformType,
 	formPreFillData = {},
 }) {
+	console.log({ currentformType });
 	const [currentForm, setCurrentForm] = useState(
 		currentformType || LoginFormConfigType
 	);

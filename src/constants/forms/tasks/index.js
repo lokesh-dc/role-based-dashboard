@@ -1,32 +1,46 @@
-import { InputFieldType } from "..";
+import { DateFieldType, InputFieldType, TextAreaFieldType } from "../fields";
 
-export const UpdateTaskFormConfigType = "UpdateTaskFormConfigType";
+export const UpdateTaskFormConfigType = "UpdateTaskFormConfig";
 
 export const UpdateTaskConfig = {
-	title: "Welcome to GGTodo",
-	description: "To get started, please sign in",
+	title: "Add Task",
 	fields: [
 		{
-			id: "email",
-			type: "email",
-			label: "Email",
-			placeholder: "Enter your registered email",
+			id: "title",
+			type: "text",
+			label: "Title",
+			placeholder: "Enter title",
 			required: true,
 			fieldType: InputFieldType,
-			validations: (email) => {
-				"/^[^s@]+@[^s@]+.[^s@]+$/".test(email);
-			},
-			errorMessage: "Please enter a valid email address",
+			errorMessage: "Please enter task title here",
 		},
 		{
-			id: "password",
-			type: "password",
-			label: "Password",
-			placeholder: "Enter your password",
+			id: "description",
+			type: "text",
+			label: "Description",
+			placeholder: "Enter Description",
+			required: false,
+			fieldType: TextAreaFieldType,
+			rows: 3,
+			errorMessage: "Please enter task description here",
+		},
+		{
+			id: "dueDate",
+			type: "date",
+			label: "Due Date",
+			placeholder: "Select Due Date",
 			required: true,
-			fieldType: InputFieldType,
-			isPassword: true,
-			errorMessage: "Please enter a valid password",
+			fieldType: DateFieldType,
+			errorMessage: "Please select Due Date",
+		},
+		{
+			id: "dueDate",
+			type: "time",
+			label: "Due Date",
+			placeholder: "Select Due Date",
+			required: true,
+			fieldType: DateFieldType,
+			errorMessage: "Please select Due Date",
 		},
 	],
 	submitTitle: "Login",

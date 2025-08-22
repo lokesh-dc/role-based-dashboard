@@ -1,8 +1,8 @@
-import { InputFieldType, SwitchFormActionType } from "..";
+import { InputFieldType, SwitchFormActionType } from "../fields";
 
 export const LoginFormConfigType = "LoginFormConfig";
 export const SignupFormConfigType = "SignupFormConfig";
-export const UpdateFormConfigType = "UpdateFormConfigType";
+export const UpdateFormConfigType = "UpdateFormConfig";
 
 export const loginFormConfig = {
 	title: "Welcome to GGTodo",
@@ -132,4 +132,3 @@ export const editProfileFormConfig = {
 	},
 	buttonType: "secondary",
 };
-

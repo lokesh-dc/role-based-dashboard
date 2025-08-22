@@ -6,17 +6,15 @@ import {
 	SignupFormConfigType,
 	UpdateFormConfigType,
 } from "./users";
-
-export const InputFieldType = "inputFieldType";
-
-// Form Actions
-export const SwitchFormActionType = "switchForm";
+import { UpdateTaskConfig, UpdateTaskFormConfigType } from "./tasks";
 
 export const getFormConfig = (type) => {
+	console.log("getFormConfig", type);
 	const formtypes = {
 		[LoginFormConfigType]: loginFormConfig,
 		[SignupFormConfigType]: signupFormConfig,
 		[UpdateFormConfigType]: editProfileFormConfig,
+		[UpdateTaskFormConfigType]: UpdateTaskConfig,
 	};
 	return formtypes[type] || {};
 };
