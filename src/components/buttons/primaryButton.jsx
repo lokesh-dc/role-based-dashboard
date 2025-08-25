@@ -12,16 +12,21 @@ export default function PrimaryButton({
 	icons = {},
 	classes = "",
 	padding = "px-7 py-2",
+	isDangerVersion = false,
 }) {
 	const Tag = isLink ? Link : "button";
 	const props = isLink ? { href: linkTarget } : { onClick: clickEvent, type };
 
 	const buttonClasses =
-		buttonType == "primary" ? "bg-primary" : "bg-[#E7F7EF] text-[#097C44]";
+		buttonType == "primary"
+			? isDangerVersion
+				? "bg-danger text-white"
+				: "bg-primary"
+			: "bg-[#E7F7EF] text-[#097C44]";
 
 	return (
 		<Tag
-			className={`${buttonClasses} ${padding} rounded-lg ${
+			className={`${buttonClasses} ${padding} c rounded-lg ${
 				disabled ? "opacity-50 cursor-not-allowed" : ""
 			} ${classes}`}
 			{...props}

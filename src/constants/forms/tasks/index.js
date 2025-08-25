@@ -1,8 +1,9 @@
 import { DateFieldType, InputFieldType, TextAreaFieldType } from "../fields";
 
 export const UpdateTaskFormConfigType = "UpdateTaskFormConfig";
+export const AddTaskFormConfigType = "AddTaskFormConfig";
 
-export const UpdateTaskConfig = {
+export const AddTaskConfig = {
 	title: "Add Task",
 	fields: [
 		{
@@ -26,16 +27,7 @@ export const UpdateTaskConfig = {
 		},
 		{
 			id: "dueDate",
-			type: "date",
-			label: "Due Date",
-			placeholder: "Select Due Date",
-			required: true,
-			fieldType: DateFieldType,
-			errorMessage: "Please select Due Date",
-		},
-		{
-			id: "dueDate",
-			type: "time",
+			type: "datetime-local",
 			label: "Due Date",
 			placeholder: "Select Due Date",
 			required: true,
@@ -43,9 +35,20 @@ export const UpdateTaskConfig = {
 			errorMessage: "Please select Due Date",
 		},
 	],
-	submitTitle: "Login",
+	submitTitle: "Update Task",
 	submitApi: "/api/user/login",
-	submitLoadingTitle: "Logging you in...",
+	submitLoadingTitle: "Creating...",
+	onSuccess: () => {
+		window.location.href = "/dashboard";
+	},
+};
+
+export const UpdateTaskConfig = {
+	...AddTaskConfig,
+	title: "Update Task",
+	submitTitle: "Update Task",
+	submitApi: "/api/user/login",
+	submitLoadingTitle: "Updating...",
 	onSuccess: () => {
 		window.location.href = "/dashboard";
 	},

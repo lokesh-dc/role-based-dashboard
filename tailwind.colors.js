@@ -4,4 +4,5 @@ module.exports = {
 	white: "#ffffff",
 	black: "#1f1f1f",
 	"secondary-alfa": "#E9EAEC",
+	danger: "#FF4D6D",
 };

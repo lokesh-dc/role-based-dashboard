@@ -3,6 +3,7 @@ import { useState } from "react";
 import { formatDate } from "@/utils/dates";
 
 import EditTaskModal from "@/components/modals/tasks/edit";
+import DeleteTaskModal from "@/components/modals/tasks/delete";
 import PrimaryButton from "@/components/buttons/primaryButton";
 import Table from "..";
 import Tag from "@/components/ui/tags";
@@ -10,6 +11,8 @@ import Tag from "@/components/ui/tags";
 export default function TodosTable({ data }) {
 	const [editTodoModalToggle, setEditTodoModalToggle] = useState(false);
 	const [deleteTodoModalToggle, setDeleteTodoModalToggle] = useState(false);
+
+	const [currentSelectedTodo, setCurrentSelectedTodo] = useState(null);
 
 	return (
 		<>
@@ -62,7 +65,7 @@ export default function TodosTable({ data }) {
 					{
 						title: "Action",
 						type: "actions",
-						renderComponents: (cellId) => {
+						renderComponents: (todo) => {
 							return (
 								<div className="flex gap-2 ">
 									{[
@@ -75,7 +78,10 @@ export default function TodosTable({ data }) {
 												},
 											},
 											classes: "bg-[#F4EFFF]",
-											clickEvent: () => setEditTodoModalToggle(true),
+											clickEvent: () => {
+												setEditTodoModalToggle(true);
+												setCurrentSelectedTodo(todo);
+											},
 										},
 										{
 											icons: {
@@ -86,6 +92,10 @@ export default function TodosTable({ data }) {
 												},
 											},
 											classes: "bg-[#FEE9F1]",
+											clickEvent: () => {
+												setDeleteTodoModalToggle(true);
+												setCurrentSelectedTodo(todo);
+											},
 										},
 									]?.map((action, idx) => (
 										<PrimaryButton
@@ -110,7 +120,13 @@ export default function TodosTable({ data }) {
 			</Table>
 			<EditTaskModal
 				isOpen={editTodoModalToggle}
+				currentValue={currentSelectedTodo}
 				closeModalEvent={() => setEditTodoModalToggle(false)}
+			/>
+			<DeleteTaskModal
+				isOpen={deleteTodoModalToggle}
+				currentValue={currentSelectedTodo}
+				closeModalEvent={() => setDeleteTodoModalToggle(false)}
 			/>
 		</>
 	);

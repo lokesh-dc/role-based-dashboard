@@ -7,7 +7,7 @@ import {
 } from "@/constants/forms/users";
 
 import { getFormConfig } from "@/constants/forms";
-import { SwitchFormActionType } from "@/constants/forms";
+import { SwitchFormActionType } from "@/constants/forms/fields";
 
 import PrimaryButton from "@/components/buttons/primaryButton";
 import FieldsContainer from "@/components/helpers/form/container";
@@ -17,8 +17,8 @@ import APIrequest from "@/utils/requests";
 export default function ConfigBasedForm({
 	currentformType,
 	formPreFillData = {},
+	isModalVersion = false,
 }) {
-	console.log({ currentformType });
 	const [currentForm, setCurrentForm] = useState(
 		currentformType || LoginFormConfigType
 	);
@@ -70,7 +70,7 @@ export default function ConfigBasedForm({
 	return (
 		<div className="md:bg-transparent rounded-2xl flex flex-col gap-4">
 			<div className="flex flex-col gap-1">
-				{currentFormConfig?.title ? (
+				{currentFormConfig?.title && !isModalVersion ? (
 					<h2 className="text-[40px]">{currentFormConfig?.title}</h2>
 				) : null}
 				{currentFormConfig?.description ? (

@@ -12,7 +12,8 @@ export default function Table({
 		const value = dataItem[key];
 
 		if (fieldRule?.type == "multi") return fieldRule?.formatData(dataItem);
-		if (fieldRule?.type == "actions") return fieldRule?.renderComponents();
+		if (fieldRule?.type == "actions")
+			return fieldRule?.renderComponents(dataItem);
 		if (fieldRule?.formatData) return fieldRule?.formatData(value);
 		return value;
 	};
@@ -27,7 +28,7 @@ export default function Table({
 			</div>
 			<div className="flex flex-col p-2 rounded-lg">
 				<div className="bg-[#fafafa] flex gap-4 justify-around">
-					{dataColumns?.map(({ title, colIdx }) => (
+					{dataColumns?.map(({ title }, colIdx) => (
 						<div key={colIdx} className="w-full text-[#657081] p-2 ">
 							{title}
 						</div>
